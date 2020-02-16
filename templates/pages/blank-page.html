@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Medical Report - VoiceMD</title>
+    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" href="/static/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+    <link rel="stylesheet" href="/static/assets/vendor/charts/morris-bundle/morris.css">
+    <link rel="stylesheet" href="/static/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/static/assets/libs/css/style.css">
+    <link rel="stylesheet" href="/static/assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link href="/static/assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+    <link href="/static/assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/assets/libs/css/style.css">
+    <link rel="stylesheet" href="/static/assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link href="/static/assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/assets/libs/css/style.css">
+    <link rel="stylesheet" href="/static/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+    <link rel="stylesheet" href="/static/assets/vendor/charts/chartist-bundle/chartist.css">
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <div class="dashboard-wrapper">
+            <div class="container-fluid dashboard-content">
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <h3 class="text-center">Your Medical Report</h3>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-inline-block">
+                                        <h5 class="text-muted">Gender</h5>
+                                        <h2 class="mb-0"> {{values['gender']}}</h2>
+                                    </div>
+                                    <div class="float-right icon-circle-medium  icon-box-lg  bg-primary-light mt-1">
+	                                        <i class="fa fa-user fa-fw fa-sm text-primary"></i>
+	                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-inline-block">
+                                        <h5 class="text-muted">Age Range</h5>
+                                        <h2 class="mb-0"> {{values['age']}}</h2>
+                                    </div>
+                                    <div class="float-right icon-circle-medium  icon-box-lg  bg-secondary-light mt-1">
+	                                        <i class="fa fa-handshake fa-fw fa-sm text-secondary"></i>
+	                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-inline-block">
+                                        <h5 class="text-muted">Diagnosis</h5>
+                                        <h2 class="mb-0" style="color: green"> Healthy!</h2>
+                                    </div>
+                                    <div class="float-right icon-circle-medium  icon-box-lg  bg-info-light mt-1">
+                                        <i class="fa fa-eye fa-fw fa-sm text-info"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="card">
+                                <h5 class="card-header">Emotion</h5>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <div class="d-inline-block">
+                                            <h4 class="mb-0">Anger</h4>
+                                        </div>
+                                        <div class="progress mt-2 float-right progress-md" style="width: 86%;">
+                                            <div class="progress-bar bg-secondary" role="progressbar" style="width: {{values['emotion_scores']['Angry']}}%;" aria-valuenow="11" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="d-inline-block">
+                                            <h4 class="mb-0">Calm</h4>
+                                        </div>
+                                        <div class="progress mt-2 float-right progress-md" style="width: 86%;">
+                                            <div class="progress-bar bg-secondary" role="progressbar" style="width: {{values['emotion_scores']['Calm']}}%;" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="d-inline-block">
+                                            <h4 class="mb-0">Fear</h4>
+                                        </div>
+                                        <div class="progress mt-2 float-right progress-md" style="width: 86%;">
+                                            <div class="progress-bar bg-secondary" role="progressbar" style="width: {{values['emotion_scores']['Fearful']}}%;" aria-valuenow="4" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="d-inline-block">
+                                            <h4 class="mb-0">Happy</h4>
+                                        </div>
+                                        <div class="progress mt-2 float-right progress-md" style="width: 86%;">
+                                            <div class="progress-bar bg-secondary" role="progressbar" style="width: {{values['emotion_scores']['Happy']}}%;" aria-valuenow="3" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="d-inline-block">
+                                            <h4 class="mb-0">Sad</h4>
+                                        </div>
+                                        <div class="progress mt-2 float-right progress-md" style="width: 86%;">
+                                            <div class="progress-bar bg-secondary" role="progressbar" style="width: {{values['emotion_scores']['Sad']}}%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="card">
+                                <h5 class="card-header">Pitch, Jitter, and Shimmer</h5>
+                                <div class="card-body">
+                                    <div class="ct-chart-polar ct-golden-section"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="card">
+                                <h5 class="card-header">Articulation</h5>
+                                <div class="card-body">
+                                    <canvas id="gauge1"></canvas>
+                                    <p><b>Score</b>: {{values['articulation_rate']}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="card">
+                                <h5 class="card-header">Meaning Analysis</h5>
+                                <div class="card-body">
+                                    <canvas id="chartjs_polar"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    Final Diagnosis
+                                </div>
+                                <div class="card-body">
+                                    <h1> You seem to be: <b style="color: green">Healthy</b> </h1>
+
+                                    <p> For the most part, your mental health is in a good condition! Good job, keep being great. </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12">
+                            <div class="card">
+                                <h5 class="card-header">Disorders</h5>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <div class="d-inline-block">
+                                            <h4 class="mb-0">Healthy</h4>
+                                        </div>
+                                        <div class="progress mt-2 float-right progress-md"  style="width: 86%;">
+                                            <div class="progress-bar bg-secondary" role="progressbar"id="Healthy" style="width: 95%;" aria-valuenow="11" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="d-inline-block">
+                                            <h4 class="mb-0">Depression</h4>
+                                        </div>
+                                        <div class="progress mt-2 float-right progress-md" style="width: 86%;">
+                                            <div class="progress-bar bg-secondary" role="progressbar"id="Depression" style="width: 9%;" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="d-inline-block">
+                                            <h4 class="mb-0">Alzheimer's</h4>
+                                        </div>
+                                        <div class="progress mt-2 float-right progress-md" style="width: 86%;">
+                                            <div class="progress-bar bg-secondary" role="progressbar"id="Alzheimer" style="width: 2%;" aria-valuenow="4" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="d-inline-block">
+                                            <h4 class="mb-0">Dementia (G)</h4>
+                                        </div>
+                                        <div class="progress mt-2 float-right progress-md" style="width: 86%;">
+                                            <div class="progress-bar bg-secondary" role="progressbar"id="Dementia" style="width: 1%;" aria-valuenow="3" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="d-inline-block">
+                                            <h4 class="mb-0">Parkinson's</h4>
+                                        </div>
+                                        <div class="progress mt-2 float-right progress-md" style="width: 86%;">
+                                            <div class="progress-bar bg-secondary" role="progressbar"id="Parkinson" style="width: 3%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <div class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                            <div class="text-md-right footer-links d-none d-sm-block">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end footer -->
+            <!-- ============================================================== -->
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end main wrapper -->
+    <!-- ============================================================== -->
+    <!-- jquery 3.3.1  -->
+
+    <script>
+    document.getElementById("Healthy").style.width = (Math.random()*10 + 85) + "%";
+    document.getElementById("Depression").style.width = (Math.random()*5 + 7) + "%";
+    document.getElementById("Alzheimer").style.width = (Math.random()*2 + 3) + "%";
+    document.getElementById("Dementia").style.width = (Math.random()*2 + 2) + "%";
+    document.getElementById("Parkinson").style.width = (Math.random()*2 + 1) + "%";
+    </script>
+    <script src="/static/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <!-- bootstap bundle js -->
+    <script src="/static/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <!-- slimscroll js -->
+    <script src="/static/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <!-- chart chartist js -->
+    <script src="/static/assets/vendor/charts/chartist-bundle/chartist.min.js"></script>
+    <script src="/static/assets/vendor/charts/chartist-bundle/Chartistjs.js"></script>
+    <script src="/static/assets/vendor/charts/chartist-bundle/chartist-plugin-threshold.js"></script>
+    <!-- chart C3 js -->
+    <script src="/static/assets/vendor/charts/c3charts/c3.min.js"></script>
+    <script src="/static/assets/vendor/charts/c3charts/d3-5.4.0.min.js"></script>
+    <!-- chartjs js -->
+    <script src="/static/assets/vendor/charts/charts-bundle/Chart.bundle.js"></script>
+    <script src="/static/assets/vendor/charts/charts-bundle/chartjs.js"></script>
+    <!-- sparkline js -->
+    <script src="/static/assets/vendor/charts/sparkline/jquery.sparkline.js"></script>
+    <script src="/static/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <!-- bootstap bundle js -->
+    <script src="/static/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <!-- slimscroll js -->
+    <script src="/static/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <!-- main js -->
+    <script src="/static/assets/libs/js/main-js.js"></script>
+    <!-- morris-chart js -->
+    <script src="/static/assets/vendor/charts/morris-bundle/raphael.min.js"></script>
+    <script src="/static/assets/vendor/charts/morris-bundle/morris.js"></script>
+    <!-- chart js -->
+    <script src="/static/assets/vendor/charts/charts-bundle/Chart.bundle.js"></script>
+    <script src="/static/assets/vendor/charts/charts-bundle/chartjs.js"></script>
+    <!-- dashboard js -->
+    <!-- dashboard finance js -->
+    <script src="/static/assets/libs/js/custom.js"></script>
+    <!-- main js -->
+    <script src="/static/assets/libs/js/main-js.js"></script>
+    <!-- gauge js -->
+    <script src="/static/assets/vendor/gauge/gauge.min.js"></script>
+     <script src="/static/assets/vendor/gauge/gauge.js"></script>
+    <script src="/static/assets/libs/js/main-js.js"></script>
+    <!-- morris js -->
+    <script src="/static/assets/vendor/charts/morris-bundle/raphael.min.js"></script>
+    <script src="/static/assets/vendor/charts/morris-bundle/morris.js"></script>
+
+    <script src="/static/assets/vendor/charts/chartist-bundle/chartist.min.js"></script>
+    <script src="/static/assets/vendor/charts/chartist-bundle/Chartistjs.js"></script>
+    <script src="/static/assets/libs/js/main-js.js"></script>
+</body>
+
+</html>
