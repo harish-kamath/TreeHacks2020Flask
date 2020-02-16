@@ -3,6 +3,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import random
+from processWav import getAttribs
 
 
 class Feedforward(torch.nn.Module):
@@ -108,7 +109,12 @@ def percentChance(sounds):
 	model.load_state_dict(torch.load('model'))
 	model.eval()
 
-	test = torch.tensor(tuple(sounds), dtype=torch.float)
+	attribs = getAttribs(sounds)
+	test_data = list(attribs[3:])
+	test_data.append(attribs[0])
+	test_data.append(attribs[1])
+	
+	test = torch.tensor(tuple(test_data), dtype=torch.float)
 	y_pred = model(test)
 	percentage = y_pred.detach().numpy()[0]
 	return percentage
