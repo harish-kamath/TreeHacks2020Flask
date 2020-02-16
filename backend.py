@@ -11,14 +11,16 @@ current_partial = None
 
 @app.route('/', methods=['GET','POST'])
 def home():
+    global current_partial
     if request.headers['Finished'] == 'true':
         print("Final Wav called!")
         wavf.write('final.wav',44100,np.array([float(x) for x in current_partial.decode('utf-8').split(',')]))
         current_partial = None
     else:
-        if current_partial = None:
+        if current_partial == None:
             current_partial = request.get_data()
         else:
+            current_partial += b','
             current_partial += request.get_data()
         wavf.write('temp.wav',44100,np.array([float(x) for x in current_partial.decode('utf-8').split(',')]))
         data = getAttribs("temp.wav")
