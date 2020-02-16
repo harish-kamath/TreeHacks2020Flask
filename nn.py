@@ -57,7 +57,7 @@ def trainModel():
 	    # print(y_pred)
 	    # Compute Loss
 	    loss = criterion(y_pred.squeeze(), y)
-	   
+
 	    print('Epoch {}: train loss: {}'.format(epoch, loss.item()))
 	    # Backward pass
 	    loss.backward()
@@ -113,7 +113,7 @@ def percentChance(sounds):
 	test_data = list(attribs[3:])
 	test_data.append(attribs[0])
 	test_data.append(attribs[1])
-	
+
 	test = torch.tensor(tuple(test_data), dtype=torch.float)
 	y_pred = model(test)
 	percentage = y_pred.detach().numpy()[0]

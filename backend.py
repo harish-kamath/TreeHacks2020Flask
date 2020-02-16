@@ -12,11 +12,13 @@ import librosa
 from sklearn.externals import joblib
 from keras.models import model_from_json
 import myspsolution as mysp
+import nn
 app = Flask(__name__)
 
 cors = CORS(app, resources={r"*": {"origins": "*"}})
 
 current_partial = None
+current_id = 0
 
 emotions = ['Angry','Calm','Fearful','Happy','Sad','Angry','Calm','Fearful','Happy','Sad']
 
@@ -81,6 +83,7 @@ def home():
 
 @app.route('/report/<reportid>')
 def report(reportid):
+    current_id = reportid
     print('Showing Report '+str(reportid))
     files = [x for x in os.listdir() if (str(reportid) in x and "wav" in x)]
     print(files)
@@ -109,7 +112,15 @@ def report(reportid):
         total_values['pitch'] = pitch
         total_values['jitter'] = jitter
         total_values['shimmer'] = shimmer
+        total_values['parkinson'] = nn.percentChance(path)*100*0.4
         return render_template('pages/blank-page.html', values=total_values)
+
+@app.route('/alexarecord', methods=['POST'])
+def alexapost():
+    f = open(str(current_id)+'_alexarecord.txt')
+    f.write(request.headers['Problem'])
+    f.close()
+    return "Hello, World!"
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80)
