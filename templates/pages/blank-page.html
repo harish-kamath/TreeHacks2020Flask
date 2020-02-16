@@ -167,6 +167,13 @@
                                     <h1> You seem to be: <b style="color: green">Healthy</b> </h1>
 
                                     <p> For the most part, your mental health is in a good condition! Good job, keep being great. </p>
+
+                                    {% if "selfdiag" in total_values.keys() %}
+                                    <br />
+                                    <h2>Self Diagnosis: What is wrong with you?</h2>
+
+                                    <p>{{total_values["selfdiag"]}}</p>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

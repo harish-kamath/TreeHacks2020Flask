@@ -104,6 +104,10 @@ def report(reportid):
         total_values = total_values.to_dict()
         for k in total_values.keys():
             total_values[k] = float("{0:.3f}".format(float(total_values[k][0])))
+        if(str(current_id)+'_alexarecord.txt' in os.listdir()):
+            f = open(str(current_id)+'_alexarecord.txt', 'r')
+            total_values['selfdiag'] = f.readlines()[0]
+            f.close()
 
         total_values['gender'] = gender[0]
         total_values['age'] = age[0]
@@ -117,7 +121,7 @@ def report(reportid):
 
 @app.route('/alexarecord', methods=['POST'])
 def alexapost():
-    f = open(str(current_id)+'_alexarecord.txt')
+    f = open(str(current_id)+'_alexarecord.txt','w+')
     f.write(request.headers['Problem'])
     f.close()
     return "Hello, World!"
