@@ -14,16 +14,10 @@ def home():
     global current_partial
     if request.headers['Finished'] == 'true':
         print("Final Wav called!")
-        wavf.write('final.wav',44100,np.array([float(x) for x in current_partial.decode('utf-8').split(',')]))
-        current_partial = None
-    else:
-        if current_partial == None:
-            current_partial = request.get_data()
-        else:
-            current_partial += b','
-            current_partial += request.get_data()
-        wavf.write('temp.wav',44100,np.array([float(x) for x in current_partial.decode('utf-8').split(',')]))
-        data = getAttribs("temp.wav")
+        arr = np.array([float(x) for x in current_partial.decode('utf-8').split(',')])
+        arr = (arr*32767).astype(np.int16)
+        wavf.write('final.wav',44100,arr)
+        data = getAttribs('final.wav')
         # Pitch, Jitter, Shimmer
         return str(data[0]) + "," + str(data[3]) + "," + str(data[8])
     return "Hello, World!"
